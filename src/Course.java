@@ -1,0 +1,51 @@
+public class Course implements Manageable {
+
+    private int courseId;
+    private String courseName;
+    private Instructor instructor;
+
+    public Course(int courseId, String courseName, Instructor instructor) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.instructor = instructor;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    @Override
+    public void add() {
+        System.out.println("Course added: " + courseName);
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Course updated: " + courseName);
+    }
+
+    @Override
+    public void delete() {
+        System.out.println("Course deleted: " + courseName);
+    }
+}
