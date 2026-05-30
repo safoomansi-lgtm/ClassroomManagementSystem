@@ -26,7 +26,16 @@ public class Main {
                             "OOP Homework",
                             "25/05/2026",
                             course);
+            Submission submission =
+                    new Submission(
+                            1,
+                            student,
+                            assignment,
+                            "2026-05-31",
+                            "Submitted"
+                    );
 
+            submission.displaySubmissionInfo();
             student.displayRole();
             instructor.displayRole();
 
