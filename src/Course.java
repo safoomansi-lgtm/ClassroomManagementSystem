@@ -48,4 +48,9 @@ public class Course implements Manageable {
     public void delete() {
         System.out.println("Course deleted: " + courseName);
     }
+    @Override
+    public String toString() {
+        return "Course ID: " + courseId +
+                ", Course Name: " + courseName;
+    }
 }

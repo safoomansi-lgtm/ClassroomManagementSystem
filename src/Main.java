@@ -14,6 +14,7 @@ public class Main {
                     new Course(101,
                             "Java Programming",
                             instructor);
+            System.out.println(course);
 
             Student student =
                     new Student(1,
