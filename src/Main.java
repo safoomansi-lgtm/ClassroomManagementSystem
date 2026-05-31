@@ -20,6 +20,7 @@ public class Main {
                             "Safa",
                             "safa@gmail.com",
                             "S100");
+            System.out.println(student);
 
             Assignment assignment =
                     new Assignment(1,

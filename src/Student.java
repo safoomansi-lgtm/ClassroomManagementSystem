@@ -23,4 +23,9 @@ public class Student extends Person {
     public void displayRole() {
         System.out.println("Role: Student");
     }
+    @Override
+    public String toString() {
+        return "Student Number: " + studentNumber +
+                ", Name: " + getName();
+    }
 }
