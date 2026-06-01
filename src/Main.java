@@ -43,7 +43,7 @@ public class Main {
 
             course.add();
             assignment.add();
-
+System.out.println(assignment);
         }
 
         catch (InvalidDataException e) {

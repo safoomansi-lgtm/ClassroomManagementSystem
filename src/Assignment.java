@@ -59,4 +59,8 @@ public class Assignment implements Manageable {
     public void delete() {
         System.out.println("Assignment deleted: " + title);
     }
+    @Override
+    public String toString(){
+        return  "Assignment ID: " +assignmentId + "Tittle:" +title +"Due Date: "+ dueDate;
+    }
 }
