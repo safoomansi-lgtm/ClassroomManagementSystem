@@ -1,4 +1,5 @@
-
+package model;
+import service.Manageable;
 public class Assignment implements Manageable {
 
     private int assignmentId;
@@ -47,20 +48,20 @@ public class Assignment implements Manageable {
 
     @Override
     public void add() {
-        System.out.println("Assignment added: " + title);
+        System.out.println("model.Assignment added: " + title);
     }
 
     @Override
     public void update() {
-        System.out.println("Assignment updated: " + title);
+        System.out.println("model.Assignment updated: " + title);
     }
 
     @Override
     public void delete() {
-        System.out.println("Assignment deleted: " + title);
+        System.out.println("model.Assignment deleted: " + title);
     }
     @Override
     public String toString(){
-        return  "Assignment ID: " +assignmentId + "Tittle:" +title +"Due Date: "+ dueDate;
+        return  "model.Assignment ID: " +assignmentId + "Tittle:" +title +"Due Date: "+ dueDate;
     }
 }

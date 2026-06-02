@@ -1,3 +1,5 @@
+package model;
+import service.Manageable;
 public class Course implements Manageable {
 
     private int courseId;
@@ -36,21 +38,21 @@ public class Course implements Manageable {
 
     @Override
     public void add() {
-        System.out.println("Course added: " + courseName);
+        System.out.println("model.Course added: " + courseName);
     }
 
     @Override
     public void update() {
-        System.out.println("Course updated: " + courseName);
+        System.out.println("model.Course updated: " + courseName);
     }
 
     @Override
     public void delete() {
-        System.out.println("Course deleted: " + courseName);
+        System.out.println("model.Course deleted: " + courseName);
     }
     @Override
     public String toString() {
-        return "Course ID: " + courseId +
-                ", Course Name: " + courseName;
+        return "model.Course ID: " + courseId +
+                ", model.Course Name: " + courseName;
     }
 }

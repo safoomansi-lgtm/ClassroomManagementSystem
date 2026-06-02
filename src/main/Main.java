@@ -1,3 +1,7 @@
+package main;
+
+import exception.InvalidDataException;
+import model.*;
 
 public class Main {
 

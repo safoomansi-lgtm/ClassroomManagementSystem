@@ -1,3 +1,5 @@
+package model;
+
 public class Instructor extends Person {
 
     private String department;
@@ -17,6 +19,6 @@ public class Instructor extends Person {
 
     @Override
     public void displayRole() {
-        System.out.println("Role: Instructor");
+        System.out.println("Role: model.Instructor");
     }
 }

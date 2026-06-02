@@ -1,3 +1,5 @@
+package model;
+
 public class Submission {
 
     private int submissionId;
@@ -15,10 +17,10 @@ public class Submission {
     }
 
     public void displaySubmissionInfo() {
-        System.out.println("Submission ID: " + submissionId);
-        System.out.println("Student: " + student.getName());
-        System.out.println("Assignment: " + assignment.getTitle());
-        System.out.println("Submission Date: " + submissionDate);
+        System.out.println("model.Submission ID: " + submissionId);
+        System.out.println("model.Student: " + student.getName());
+        System.out.println("model.Assignment: " + assignment.getTitle());
+        System.out.println("model.Submission Date: " + submissionDate);
         System.out.println("Status: " + status);
     }
 }
