@@ -1,5 +1,10 @@
 package model;
 import exception.InvalidDataException;
+
+/**
+ * Represents a student in the classroom management system.
+ * This Class extend and adds a student number.
+ */
 public class Student extends Person {
 
     private String studentNumber;

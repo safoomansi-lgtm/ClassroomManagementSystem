@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Represents an instructor in the classroom management system.
+ * This Class extends person and contains instructor information.
+ */
+
 public class Instructor extends Person {
 
     private String department;

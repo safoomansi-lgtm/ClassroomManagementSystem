@@ -1,5 +1,10 @@
 package model;
 import service.Manageable;
+
+/**
+ * Represents a course in the classroom management system.
+ * A course is associated with an instructor.
+ */
 public class Course implements Manageable {
 
     private int courseId;

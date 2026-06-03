@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Abstract Class representing a person in the classroom management system.
+ * This Class contains common attributes shared by student and instructors.
+ */
 public abstract class Person {
 
     private int id;

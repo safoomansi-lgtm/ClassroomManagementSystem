@@ -3,6 +3,9 @@ package main;
 import exception.InvalidDataException;
 import model.*;
 
+/**
+ * Main Class used to run and test the classroom management system.s
+ */
 public class Main {
 
     public static void main(String[] args) {

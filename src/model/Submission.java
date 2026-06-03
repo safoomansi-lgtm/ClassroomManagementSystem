@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Represents a student's submission for an assignment.
+ * A submission links a student with an assignment.
+ */
 public class Submission {
 
     private int submissionId;

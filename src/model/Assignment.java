@@ -1,5 +1,10 @@
 package model;
 import service.Manageable;
+
+/**
+ * Represents an assignment in a course.
+ * Each assignment has a title and due date.
+ */
 public class Assignment implements Manageable {
 
     private int assignmentId;
