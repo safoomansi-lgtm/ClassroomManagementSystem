@@ -20,11 +20,31 @@ public class Submission {
         this.status = status;
     }
 
+    public int getSubmissionId() {
+        return submissionId;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public String getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
     public void displaySubmissionInfo() {
-        System.out.println("model.Submission ID: " + submissionId);
-        System.out.println("model.Student: " + student.getName());
-        System.out.println("model.Assignment: " + assignment.getTitle());
-        System.out.println("model.Submission Date: " + submissionDate);
+        System.out.println("Submission ID: " + submissionId);
+        System.out.println("Student: " + student.getName());
+        System.out.println("Assignment: " + assignment.getTitle());
+        System.out.println("Submission Date: " + submissionDate);
         System.out.println("Status: " + status);
     }
 }
