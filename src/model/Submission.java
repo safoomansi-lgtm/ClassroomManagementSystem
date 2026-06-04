@@ -47,4 +47,12 @@ public class Submission {
         System.out.println("Submission Date: " + submissionDate);
         System.out.println("Status: " + status);
     }
+    @Override
+    public String toString() {
+        return "Submission ID: " + submissionId +
+                ", Student: " + student.getName() +
+                ", Assignment: " + assignment.getTitle() +
+                ", Submission Date: " + submissionDate +
+                ", Status: " + status;
+    }
 }

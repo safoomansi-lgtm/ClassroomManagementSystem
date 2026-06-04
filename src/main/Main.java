@@ -43,7 +43,7 @@ public class Main {
                             "2026-05-31",
                             "Submitted"
                     );
-
+            System.out.println(submission);
             submission.displaySubmissionInfo();
             student.displayRole();
             instructor.displayRole();
