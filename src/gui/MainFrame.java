@@ -16,6 +16,13 @@ public class MainFrame extends JFrame {
         JLabel titleLabel = new JLabel("Classroom Management System", SwingConstants.CENTER);
         JButton addStudentButton = new JButton("Add Student");
         JButton addCourseButton = new JButton("Add Course");
+        addStudentButton.addActionListener(e ->
+                JOptionPane.showMessageDialog(this,
+                        "Student added successfully!"));
+
+        addCourseButton.addActionListener(e ->
+                JOptionPane.showMessageDialog(this,
+                        "Course added successfully!"));
 
         setLayout(new GridLayout(3, 1));
         add(titleLabel);
