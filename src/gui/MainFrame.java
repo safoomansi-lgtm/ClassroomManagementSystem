@@ -18,11 +18,11 @@ public class MainFrame extends JFrame {
         JButton addCourseButton = new JButton("Add Course");
         addStudentButton.addActionListener(e ->
                 JOptionPane.showMessageDialog(this,
-                        "Student added successfully!"));
+                        "Add Student button clicked successfully!"));
 
         addCourseButton.addActionListener(e ->
                 JOptionPane.showMessageDialog(this,
-                        "Course added successfully!"));
+                        " Add Course button clicked successfully!"));
 
         setLayout(new GridLayout(3, 1));
         add(titleLabel);
