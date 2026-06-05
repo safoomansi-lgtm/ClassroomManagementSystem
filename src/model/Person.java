@@ -1,10 +1,10 @@
 package model;
 
 /**
- * Abstract Class representing a person in the classroom management system.
+ *  Class representing a person in the classroom management system.
  * This Class contains common attributes shared by student and instructors.
  */
-public abstract class Person {
+public class Person {
 
     private int id;
     private String name;
@@ -40,5 +40,7 @@ public abstract class Person {
         this.email = email;
     }
 
-    public abstract void displayRole();
+    public void displayRole() {
+        System.out.println("Role: Person");
+    }
 }
