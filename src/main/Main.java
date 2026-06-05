@@ -10,6 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+            new gui.MainFrame().setVisible(true);
+
+
         try {
 
             Instructor instructor =
