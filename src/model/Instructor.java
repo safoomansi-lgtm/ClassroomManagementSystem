@@ -26,4 +26,9 @@ public class Instructor extends Person {
     public void displayRole() {
         System.out.println("Role: model.Instructor");
     }
+    @Override
+    public String toString() {
+        return "Instructor Name: " + getName() +
+                ", Department: " + department;
+    }
 }

@@ -16,6 +16,9 @@ public class Main {
                     new Instructor(1, "Ahmed Ali",
                             "ahmed@gmail.com",
                             "Computer Science");
+            System.out.println(instructor);
+
+
 
             Course course =
                     new Course(101,
