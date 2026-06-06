@@ -1,4 +1,5 @@
 package main;
+import database.DatabaseConnection;
 
 import exception.InvalidDataException;
 import model.*;
@@ -9,7 +10,7 @@ import model.*;
 public class Main {
 
     public static void main(String[] args) {
-
+        DatabaseConnection.connect();
             new gui.MainFrame().setVisible(true);
 
 
