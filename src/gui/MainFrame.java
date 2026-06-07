@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+
 /**
  * Represents the main graphical user interface of the classroom management system.
  */

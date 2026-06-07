@@ -1,4 +1,5 @@
 package model;
+
 import exception.InvalidDataException;
 
 /**
@@ -11,7 +12,7 @@ public class Student extends Person {
 
     public Student(int id, String name, String email, String studentNumber) throws InvalidDataException {
         super(id, name, email);
-        if (name == null || name.isEmpty()){
+        if (name == null || name.isEmpty()) {
             throw new InvalidDataException("model.Student name cannot be empty");
         }
         this.studentNumber = studentNumber;
@@ -29,6 +30,7 @@ public class Student extends Person {
     public void displayRole() {
         System.out.println("Role: model.Student");
     }
+
     @Override
     public String toString() {
         return "model.Student Number: " + studentNumber +

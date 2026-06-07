@@ -1,4 +1,5 @@
 package main;
+
 import database.DatabaseConnection;
 
 import exception.InvalidDataException;
@@ -11,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         DatabaseConnection.connect();
-            new gui.MainFrame().setVisible(true);
+        new gui.MainFrame().setVisible(true);
 
 
         try {
@@ -21,7 +22,6 @@ public class Main {
                             "ahmed@gmail.com",
                             "Computer Science");
             System.out.println(instructor);
-
 
 
             Course course =
@@ -57,10 +57,8 @@ public class Main {
 
             course.add();
             assignment.add();
-System.out.println(assignment);
-        }
-
-        catch (InvalidDataException e) {
+            System.out.println(assignment);
+        } catch (InvalidDataException e) {
 
             System.out.println(e.getMessage());
 

@@ -1,4 +1,5 @@
 package model;
+
 import service.Manageable;
 
 /**
@@ -65,8 +66,9 @@ public class Assignment implements Manageable {
     public void delete() {
         System.out.println("model.Assignment deleted: " + title);
     }
+
     @Override
-    public String toString(){
-        return  "model.Assignment ID: " +assignmentId + "Tittle:" +title +"Due Date: "+ dueDate;
+    public String toString() {
+        return "model.Assignment ID: " + assignmentId + "Tittle:" + title + "Due Date: " + dueDate;
     }
 }

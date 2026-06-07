@@ -1,4 +1,5 @@
 package model;
+
 import service.Manageable;
 
 /**
@@ -55,6 +56,7 @@ public class Course implements Manageable {
     public void delete() {
         System.out.println("model.Course deleted: " + courseName);
     }
+
     @Override
     public String toString() {
         return "model.Course ID: " + courseId +
