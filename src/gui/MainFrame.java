@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
         addStudentButton.addActionListener(e -> {
 
             StudentDAO.insertStudent(
-                    1,
+                    (int) (System.currentTimeMillis() % 100000),
                     "Safa",
                     "safa@email.com",
                     "S100"
