@@ -1,5 +1,7 @@
 package gui;
+
 import database.StudentDAO;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,15 +12,23 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         setTitle("Classroom Management System");
-        setSize(400, 300);
+        setSize(700, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JLabel titleLabel = new JLabel("Classroom Management System", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
+
         JButton addStudentButton = new JButton("Add Student");
         JButton addCourseButton = new JButton("Add Course");
-        addStudentButton.addActionListener(e -> {
 
+        addStudentButton.setFont(new Font("Arial", Font.BOLD, 16));
+        addCourseButton.setFont(new Font("Arial", Font.BOLD, 16));
+
+        addStudentButton.setPreferredSize(new Dimension(220, 55));
+        addCourseButton.setPreferredSize(new Dimension(220, 55));
+
+        addStudentButton.addActionListener(e -> {
             StudentDAO.insertStudent(
                     (int) (System.currentTimeMillis() % 100000),
                     "Safa",
@@ -28,15 +38,25 @@ public class MainFrame extends JFrame {
 
             JOptionPane.showMessageDialog(this,
                     "Student saved to database successfully!");
-
         });
+
         addCourseButton.addActionListener(e ->
                 JOptionPane.showMessageDialog(this,
-                        " Add Course button clicked successfully!"));
+                        "Add Course button clicked successfully!"));
 
-        setLayout(new GridLayout(3, 1));
-        add(titleLabel);
-        add(addStudentButton);
-        add(addCourseButton);
+        JPanel mainPanel = new JPanel(new GridLayout(3, 1, 15, 15));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 60, 40, 60));
+
+        JPanel studentPanel = new JPanel();
+        studentPanel.add(addStudentButton);
+
+        JPanel coursePanel = new JPanel();
+        coursePanel.add(addCourseButton);
+
+        mainPanel.add(titleLabel);
+        mainPanel.add(studentPanel);
+        mainPanel.add(coursePanel);
+
+        add(mainPanel);
     }
 }
