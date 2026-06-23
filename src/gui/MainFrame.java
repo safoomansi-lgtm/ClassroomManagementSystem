@@ -28,21 +28,8 @@ public class MainFrame extends JFrame {
         addStudentButton.setPreferredSize(new Dimension(220, 55));
         addCourseButton.setPreferredSize(new Dimension(220, 55));
 
-        addStudentButton.addActionListener(e -> {
-            StudentDAO.insertStudent(
-                    (int) (System.currentTimeMillis() % 100000),
-                    "Safa",
-                    "safa@email.com",
-                    "S100"
-            );
-
-            JOptionPane.showMessageDialog(this,
-                    "Student saved to database successfully!");
-        });
-
-        addCourseButton.addActionListener(e ->
-                JOptionPane.showMessageDialog(this,
-                        "Add Course button clicked successfully!"));
+        addStudentButton.addActionListener(e -> showAddStudentForm());
+        addCourseButton.addActionListener(e -> showAddCourseForm());
 
         JPanel mainPanel = new JPanel(new GridLayout(3, 1, 15, 15));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 60, 40, 60));
@@ -58,5 +45,87 @@ public class MainFrame extends JFrame {
         mainPanel.add(coursePanel);
 
         add(mainPanel);
+    }
+
+    /**
+     * Displays a form for entering student information and saves it to the database.
+     */
+    private void showAddStudentForm() {
+        JTextField nameField = new JTextField();
+        JTextField emailField = new JTextField();
+        JTextField studentNumberField = new JTextField();
+
+        Object[] fields = {
+                "Student Name:", nameField,
+                "Email:", emailField,
+                "Student Number:", studentNumberField
+        };
+
+        int result = JOptionPane.showConfirmDialog(
+                this,
+                fields,
+                "Add Student",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            String name = nameField.getText();
+            String email = emailField.getText();
+            String studentNumber = studentNumberField.getText();
+
+            if (name.isEmpty() || email.isEmpty() || studentNumber.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Please fill in all student fields.");
+            } else {
+                StudentDAO.insertStudent(
+                        (int) (System.currentTimeMillis() % 100000),
+                        name,
+                        email,
+                        studentNumber
+                );
+
+                JOptionPane.showMessageDialog(this,
+                        "Student saved to database successfully!");
+            }
+        }
+    }
+
+    /**
+     * Displays a form for entering course information.
+     */
+    private void showAddCourseForm() {
+        JTextField courseNameField = new JTextField();
+        JTextField courseCodeField = new JTextField();
+        JTextField creditHoursField = new JTextField();
+
+        Object[] fields = {
+                "Course Name:", courseNameField,
+                "Course Code:", courseCodeField,
+                "Credit Hours:", creditHoursField
+        };
+
+        int result = JOptionPane.showConfirmDialog(
+                this,
+                fields,
+                "Add Course",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            String courseName = courseNameField.getText();
+            String courseCode = courseCodeField.getText();
+            String creditHours = creditHoursField.getText();
+
+            if (courseName.isEmpty() || courseCode.isEmpty() || creditHours.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Please fill in all course fields.");
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Course added successfully!\n"
+                                + "Course Name: " + courseName + "\n"
+                                + "Course Code: " + courseCode + "\n"
+                                + "Credit Hours: " + creditHours);
+            }
+        }
     }
 }
