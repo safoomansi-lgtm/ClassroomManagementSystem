@@ -14,21 +14,40 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame {
 
+    private JLabel titleLabel;
+    private JLabel languageLabel;
+
+    private JButton addStudentButton;
+    private JButton addCourseButton;
+    private JButton addInstructorButton;
+    private JButton enrollStudentButton;
+    private JButton viewSummaryButton;
+    private JButton deleteDataButton;
+
+    private JComboBox<String> languageComboBox;
+
     public MainFrame() {
         setTitle("Classroom Management System");
-        setSize(850, 720);
+        setSize(850, 760);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JLabel titleLabel = new JLabel("Classroom Management System", SwingConstants.CENTER);
+        titleLabel = new JLabel("Classroom Management System", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
 
-        JButton addStudentButton = createButton("Add Student");
-        JButton addCourseButton = createButton("Add Course");
-        JButton addInstructorButton = createButton("Add Instructor");
-        JButton enrollStudentButton = createButton("Enroll Student in Course");
-        JButton viewSummaryButton = createButton("View Summary");
-        JButton deleteDataButton = createButton("Delete Data");
+        languageLabel = new JLabel("Language:");
+        languageLabel.setFont(new Font("Arial", Font.BOLD, 14));
+
+        languageComboBox = new JComboBox<>(new String[]{"English", "العربية"});
+        languageComboBox.setFont(new Font("Arial", Font.BOLD, 14));
+        languageComboBox.addActionListener(e -> updateLanguage());
+
+        addStudentButton = createButton("Add Student");
+        addCourseButton = createButton("Add Course");
+        addInstructorButton = createButton("Add Instructor");
+        enrollStudentButton = createButton("Enroll Student in Course");
+        viewSummaryButton = createButton("View Summary");
+        deleteDataButton = createButton("Delete Data");
 
         addStudentButton.addActionListener(e -> showAddStudentForm());
         addCourseButton.addActionListener(e -> showAddCourseForm());
@@ -37,9 +56,14 @@ public class MainFrame extends JFrame {
         viewSummaryButton.addActionListener(e -> showSummary());
         deleteDataButton.addActionListener(e -> showDeleteDataForm());
 
-        JPanel mainPanel = new JPanel(new GridLayout(7, 1, 15, 15));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(35, 80, 35, 80));
+        JPanel languagePanel = new JPanel();
+        languagePanel.add(languageLabel);
+        languagePanel.add(languageComboBox);
 
+        JPanel mainPanel = new JPanel(new GridLayout(8, 1, 12, 12));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(30, 80, 30, 80));
+
+        mainPanel.add(languagePanel);
         mainPanel.add(createPanel(titleLabel));
         mainPanel.add(createPanel(addStudentButton));
         mainPanel.add(createPanel(addCourseButton));
@@ -52,12 +76,50 @@ public class MainFrame extends JFrame {
     }
 
     /**
+     * Updates the main interface language between English and Arabic.
+     */
+    private void updateLanguage() {
+        String selectedLanguage = (String) languageComboBox.getSelectedItem();
+
+        if ("العربية".equals(selectedLanguage)) {
+            setTitle("نظام إدارة الصفوف");
+            titleLabel.setText("نظام إدارة الصفوف");
+            languageLabel.setText("اللغة:");
+
+            addStudentButton.setText("إضافة طالب");
+            addCourseButton.setText("إضافة كورس");
+            addInstructorButton.setText("إضافة معلم");
+            enrollStudentButton.setText("تسجيل طالب في كورس");
+            viewSummaryButton.setText("عرض الملخص");
+            deleteDataButton.setText("حذف بيانات");
+
+            applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        } else {
+            setTitle("Classroom Management System");
+            titleLabel.setText("Classroom Management System");
+            languageLabel.setText("Language:");
+
+            addStudentButton.setText("Add Student");
+            addCourseButton.setText("Add Course");
+            addInstructorButton.setText("Add Instructor");
+            enrollStudentButton.setText("Enroll Student in Course");
+            viewSummaryButton.setText("View Summary");
+            deleteDataButton.setText("Delete Data");
+
+            applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        }
+
+        revalidate();
+        repaint();
+    }
+
+    /**
      * Creates a styled button for the main interface.
      */
     private JButton createButton(String text) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.BOLD, 16));
-        button.setPreferredSize(new Dimension(300, 55));
+        button.setPreferredSize(new Dimension(320, 55));
         return button;
     }
 
