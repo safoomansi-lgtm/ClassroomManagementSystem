@@ -42,4 +42,27 @@ public class StudentDAO {
             System.out.println("Failed to save student: " + e.getMessage());
         }
     }
+    public static boolean deleteStudent(String studentNumber) {
+        String deleteEnrollmentsSql = "DELETE FROM Enrollments WHERE student_number = ?";
+        String deleteStudentSql = "DELETE FROM Students WHERE student_number = ?";
+
+        try (Connection connection = DatabaseConnection.connect()) {
+
+            try (PreparedStatement enrollmentStatement = connection.prepareStatement(deleteEnrollmentsSql)) {
+                enrollmentStatement.setString(1, studentNumber);
+                enrollmentStatement.executeUpdate();
+            }
+
+            try (PreparedStatement studentStatement = connection.prepareStatement(deleteStudentSql)) {
+                studentStatement.setString(1, studentNumber);
+                int rowsDeleted = studentStatement.executeUpdate();
+
+                return rowsDeleted > 0;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Failed to delete student: " + e.getMessage());
+            return false;
+        }
+    }
 }

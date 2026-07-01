@@ -37,4 +37,22 @@ public class EnrollmentDAO {
             System.out.println("Failed to enroll student: " + e.getMessage());
         }
     }
+    public static boolean deleteEnrollment(String studentNumber, String courseCode) {
+        String deleteSql = "DELETE FROM Enrollments WHERE student_number = ? AND course_code = ?";
+
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement statement = connection.prepareStatement(deleteSql)) {
+
+            statement.setString(1, studentNumber);
+            statement.setString(2, courseCode);
+
+            int rowsDeleted = statement.executeUpdate();
+
+            return rowsDeleted > 0;
+
+        } catch (Exception e) {
+            System.out.println("Failed to delete enrollment: " + e.getMessage());
+            return false;
+        }
+    }
 }

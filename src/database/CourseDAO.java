@@ -41,4 +41,27 @@ public class CourseDAO {
             System.out.println("Failed to save course: " + e.getMessage());
         }
     }
+    public static boolean deleteCourse(String courseCode) {
+        String deleteEnrollmentsSql = "DELETE FROM Enrollments WHERE course_code = ?";
+        String deleteCourseSql = "DELETE FROM Courses WHERE course_code = ?";
+
+        try (Connection connection = DatabaseConnection.connect()) {
+
+            try (PreparedStatement enrollmentStatement = connection.prepareStatement(deleteEnrollmentsSql)) {
+                enrollmentStatement.setString(1, courseCode);
+                enrollmentStatement.executeUpdate();
+            }
+
+            try (PreparedStatement courseStatement = connection.prepareStatement(deleteCourseSql)) {
+                courseStatement.setString(1, courseCode);
+                int rowsDeleted = courseStatement.executeUpdate();
+
+                return rowsDeleted > 0;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Failed to delete course: " + e.getMessage());
+            return false;
+        }
+    }
 }

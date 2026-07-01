@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         setTitle("Classroom Management System");
-        setSize(800, 650);
+        setSize(850, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -28,15 +28,17 @@ public class MainFrame extends JFrame {
         JButton addInstructorButton = createButton("Add Instructor");
         JButton enrollStudentButton = createButton("Enroll Student in Course");
         JButton viewSummaryButton = createButton("View Summary");
+        JButton deleteDataButton = createButton("Delete Data");
 
         addStudentButton.addActionListener(e -> showAddStudentForm());
         addCourseButton.addActionListener(e -> showAddCourseForm());
         addInstructorButton.addActionListener(e -> showAddInstructorForm());
         enrollStudentButton.addActionListener(e -> showEnrollStudentForm());
         viewSummaryButton.addActionListener(e -> showSummary());
+        deleteDataButton.addActionListener(e -> showDeleteDataForm());
 
-        JPanel mainPanel = new JPanel(new GridLayout(6, 1, 15, 15));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 80, 40, 80));
+        JPanel mainPanel = new JPanel(new GridLayout(7, 1, 15, 15));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(35, 80, 35, 80));
 
         mainPanel.add(createPanel(titleLabel));
         mainPanel.add(createPanel(addStudentButton));
@@ -44,6 +46,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(createPanel(addInstructorButton));
         mainPanel.add(createPanel(enrollStudentButton));
         mainPanel.add(createPanel(viewSummaryButton));
+        mainPanel.add(createPanel(deleteDataButton));
 
         add(mainPanel);
     }
@@ -54,7 +57,7 @@ public class MainFrame extends JFrame {
     private JButton createButton(String text) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.BOLD, 16));
-        button.setPreferredSize(new Dimension(280, 55));
+        button.setPreferredSize(new Dimension(300, 55));
         return button;
     }
 
@@ -235,6 +238,140 @@ public class MainFrame extends JFrame {
 
                 JOptionPane.showMessageDialog(this,
                         "Student enrolled in course successfully!");
+            }
+        }
+    }
+
+    /**
+     * Displays a form for deleting data from the system.
+     */
+    private void showDeleteDataForm() {
+        String[] options = {
+                "Delete Student",
+                "Delete Course",
+                "Delete Instructor",
+                "Delete Enrollment"
+        };
+
+        String selectedOption = (String) JOptionPane.showInputDialog(
+                this,
+                "Choose what you want to delete:",
+                "Delete Data",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (selectedOption == null) {
+            return;
+        }
+
+        switch (selectedOption) {
+            case "Delete Student" -> deleteStudent();
+            case "Delete Course" -> deleteCourse();
+            case "Delete Instructor" -> deleteInstructor();
+            case "Delete Enrollment" -> deleteEnrollment();
+            default -> JOptionPane.showMessageDialog(this, "Invalid delete option.");
+        }
+    }
+
+    /**
+     * Deletes a student using student number.
+     */
+    private void deleteStudent() {
+        String studentNumber = JOptionPane.showInputDialog(this, "Enter Student Number:");
+
+        if (studentNumber == null || studentNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Student number is required.");
+            return;
+        }
+
+        boolean deleted = StudentDAO.deleteStudent(studentNumber);
+
+        if (deleted) {
+            JOptionPane.showMessageDialog(this, "Student deleted successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Student not found.");
+        }
+    }
+
+    /**
+     * Deletes a course using course code.
+     */
+    private void deleteCourse() {
+        String courseCode = JOptionPane.showInputDialog(this, "Enter Course Code:");
+
+        if (courseCode == null || courseCode.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Course code is required.");
+            return;
+        }
+
+        boolean deleted = CourseDAO.deleteCourse(courseCode);
+
+        if (deleted) {
+            JOptionPane.showMessageDialog(this, "Course deleted successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Course not found.");
+        }
+    }
+
+    /**
+     * Deletes an instructor using email.
+     */
+    private void deleteInstructor() {
+        String email = JOptionPane.showInputDialog(this, "Enter Instructor Email:");
+
+        if (email == null || email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Instructor email is required.");
+            return;
+        }
+
+        boolean deleted = InstructorDAO.deleteInstructor(email);
+
+        if (deleted) {
+            JOptionPane.showMessageDialog(this, "Instructor deleted successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Instructor not found.");
+        }
+    }
+
+    /**
+     * Deletes a student enrollment using student number and course code.
+     */
+    private void deleteEnrollment() {
+        JTextField studentNumberField = new JTextField();
+        JTextField courseCodeField = new JTextField();
+
+        Object[] fields = {
+                "Student Number:", studentNumberField,
+                "Course Code:", courseCodeField
+        };
+
+        int result = JOptionPane.showConfirmDialog(
+                this,
+                fields,
+                "Delete Enrollment",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            String studentNumber = studentNumberField.getText();
+            String courseCode = courseCodeField.getText();
+
+            if (studentNumber.isEmpty() || courseCode.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Please fill in student number and course code.");
+            } else {
+                boolean deleted = EnrollmentDAO.deleteEnrollment(studentNumber, courseCode);
+
+                if (deleted) {
+                    JOptionPane.showMessageDialog(this,
+                            "Enrollment deleted successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Enrollment not found.");
+                }
             }
         }
     }

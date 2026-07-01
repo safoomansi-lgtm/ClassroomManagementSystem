@@ -40,4 +40,20 @@ public class InstructorDAO {
             System.out.println("Failed to save instructor: " + e.getMessage());
         }
     }
+    public static boolean deleteInstructor(String email) {
+        String deleteSql = "DELETE FROM Instructors WHERE email = ?";
+
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement statement = connection.prepareStatement(deleteSql)) {
+
+            statement.setString(1, email);
+            int rowsDeleted = statement.executeUpdate();
+
+            return rowsDeleted > 0;
+
+        } catch (Exception e) {
+            System.out.println("Failed to delete instructor: " + e.getMessage());
+            return false;
+        }
+    }
 }
