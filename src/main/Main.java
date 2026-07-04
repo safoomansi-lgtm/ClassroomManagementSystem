@@ -1,5 +1,5 @@
 package main;
-
+import Demo.PolymorphismDemo;
 import database.DatabaseConnection;
 
 import exception.InvalidDataException;
@@ -9,8 +9,9 @@ import model.*;
  * Main Class used to run and test the classroom management system.s
  */
 public class Main {
-
     public static void main(String[] args) {
+
+        PolymorphismDemo.runDemo();
         DatabaseConnection.connect();
         new gui.MainFrame().setVisible(true);
 
